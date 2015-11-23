@@ -1,0 +1,33 @@
+html
+  head
+    title 💩overseer
+    link(rel='stylesheet', href='style.css')
+    script(src='socket.io.js')
+    script.
+      var socket = io.connect('http://localhost:3001');
+      socket.on('tweet', function (data) {
+        var para = document.createElement('p');
+        para.setAttribute('id', 'tweet')
+        var name = document.createElement('strong');
+        var nametext = document.createTextNode(data.name);
+        name.appendChild(nametext);
+        para.appendChild(name);
+        var text = document.createTextNode(': '+data.text);
+        para.appendChild(text);
+
+        var element = document.getElementById('body');
+        var child = document.getElementById('tweet');
+        element.insertBefore(para,child);
+
+        var body = document.getElementById('body');
+        if (body.childNodes.length > 10) {
+          body.removeChild(body.lastChild);
+        }
+      });
+  body
+    .wrap
+      .header
+        h1 Poop emoji overseer
+      .body#body
+      //- .footer
+        //- p footer text
