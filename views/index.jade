@@ -8,10 +8,13 @@ html
       socket.on('tweet', function (data) {
         var para = document.createElement('p');
         para.setAttribute('id', 'tweet')
+        var link = document.createElement('a');
         var name = document.createElement('strong');
-        var nametext = document.createTextNode(data.name);
+        var nametext = document.createTextNode('@'+data.name);
         name.appendChild(nametext);
-        para.appendChild(name);
+        link.appendChild(name);
+        link.setAttribute('href', 'https://twitter.com/'+data.name)
+        para.appendChild(link);
         var text = document.createTextNode(': '+data.text);
         para.appendChild(text);
 

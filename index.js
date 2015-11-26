@@ -39,7 +39,7 @@ client.stream('statuses/filter', {track: '💩'}, function(stream) {
       if (!tweet.retweeted_status) {
         socket.emit('tweet', {
           'text': tweet.text,
-          'name': tweet.user.name
+          'name': tweet.user.screen_name
         });
       }
     });
